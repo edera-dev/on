@@ -1,3 +1,3 @@
-# on
+# Edera On
 
-Community hub for Project Trellis.
+Community hub for Edera On.
