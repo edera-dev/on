@@ -1,7 +1,7 @@
 # GitHub Issue #4: Add GitHub issue templates
 
 **Issue:** [#4](https://github.com/edera-dev/on/issues/4)
-**Status:** Reviewed (Approved)
+**Status:** Complete
 **Date:** 2026-03-23
 
 ## Problem Statement
@@ -359,7 +359,7 @@ yamllint .github/ISSUE_TEMPLATE/*.yml
 
 ### Required Changes
 
-- [ ] Add `README.md` to Files Modified; update `issues/new` link on line 32
+- [x] Add `README.md` to Files Modified; update `issues/new` link on line 32
   to `issues/new/choose` and broaden label text to "Report an issue"
 
 ### Optional Improvements

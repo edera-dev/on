@@ -1,0 +1,39 @@
+name: Installation Help
+description: >
+  Get help if you are stuck during EderaON installation or setup. Check
+  on.edera.dev/getting-started before opening.
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Before opening**, please verify you have followed the steps at
+        [on.edera.dev/getting-started](https://on.edera.dev/getting-started).
+
+        All fields below are optional — fill in what you have.
+
+  - type: input
+    id: step
+    attributes:
+      label: Step where you are stuck
+      description: Which step in the getting-started guide are you on?
+      placeholder: "e.g. Step 3 — installing the Edera runtime"
+    required: false
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Host environment
+      description: OS, kernel version, hardware (CPU architecture, RAM).
+      placeholder: |
+        OS and kernel:
+        CPU architecture:
+        RAM:
+    required: false
+
+  - type: textarea
+    id: error
+    attributes:
+      label: Error output or logs
+      render: shell
+    required: false

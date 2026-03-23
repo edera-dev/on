@@ -29,7 +29,7 @@ license. Full installation instructions are at
 
 This repository is the community hub for EderaON. Use it to:
 
-- [Report bugs or installation issues](https://github.com/edera-dev/on/issues/new)
+- [Report an issue](https://github.com/edera-dev/on/issues/new/choose)
 - [Browse known issues](https://github.com/edera-dev/on/issues)
 - Follow EderaON announcements and releases
 
