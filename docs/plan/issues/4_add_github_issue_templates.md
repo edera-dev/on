@@ -1,7 +1,7 @@
 # GitHub Issue #4: Add GitHub issue templates
 
 **Issue:** [#4](https://github.com/edera-dev/on/issues/4)
-**Status:** Planning
+**Status:** Reviewed (Approved)
 **Date:** 2026-03-23
 
 ## Problem Statement
@@ -214,6 +214,7 @@ yamllint .github/ISSUE_TEMPLATE/*.yml
 - [ ] `SECURITY.md` created at repo root with private disclosure instructions
 - [ ] All template fields are `required: false`
 - [ ] Bug report and installation help templates reference `on.edera.dev` and `docs.edera.dev`
+- [ ] `README.md` updated — `issues/new` link changed to `issues/new/choose`, text broadened to "Report an issue"
 - [ ] Pre-commit hooks pass
 
 ## Files Modified
@@ -224,6 +225,7 @@ yamllint .github/ISSUE_TEMPLATE/*.yml
 4. `.github/ISSUE_TEMPLATE/documentation.yml` — new file
 5. `.github/ISSUE_TEMPLATE/config.yml` — new file
 6. `SECURITY.md` — new file
+7. `README.md` — update `issues/new` link to `issues/new/choose`
 
 ## Related Issues and Tasks
 
@@ -270,3 +272,112 @@ yamllint .github/ISSUE_TEMPLATE/*.yml
    for unrelated issue types ❌
 3. **Email-based security disclosure** — requires maintaining an inbox; GitHub
    Advisories is purpose-built and keeps disclosure in-platform ❌
+
+## Plan Review
+
+**Reviewer:** Claude Code (workflow-research-plan)
+**Review Date:** 2026-03-23
+**Original Plan Date:** 2026-03-23
+
+### Review Summary
+
+- **Overall Assessment:** Approved (with Required Changes)
+- **Confidence Level:** High
+- **Recommendation:** Address the one required change (README.md link), then
+  proceed to implementation
+
+### Strengths
+
+- All six acceptance criteria from issue #4 are fully covered
+- Correct technology choice: YAML form templates produce structured, scannable
+  reports and are strictly better than legacy markdown templates for triage
+- `config.yml` syntax shown in the plan is accurate; `blank_issues_enabled: false`
+  plus `contact_links` is the right pattern for surfacing security advisory
+  without a fake public template
+- Using `textarea` for multi-line environment/log fields (vs `input`) is the
+  right ergonomic choice for engineers pasting terminal output
+- Security advisory redirect via `contact_links` keeps disclosure in-platform
+  without requiring an email inbox — well-suited for a security product
+- Field design principles are clearly stated and internally consistent
+
+### Gaps Identified
+
+1. **README.md link bypasses template picker**
+   - **Impact:** High
+   - **Detail:** `README.md:32` links to `issues/new` (the bare form), not
+     `issues/new/choose` (the template picker). Any user clicking that link
+     skips all templates entirely — defeating the purpose of this change.
+   - **Recommendation:** Update the README link to `issues/new/choose` and
+     add `README.md` to the Files Modified list. The "Report bugs or
+     installation issues" text could also be broadened to "Report an issue"
+     to cover feature requests and docs issues.
+
+2. **Template `name` fields not specified in plan**
+   - **Impact:** Low
+   - **Detail:** Each YAML template requires a top-level `name` field that
+     appears as the card title in the template picker. The plan describes field
+     contents but doesn't specify display names. This is implementation detail
+     rather than a plan gap, but worth being explicit about.
+   - **Recommendation:** Implementer should use: "Bug Report", "Feature Request",
+     "Installation Help", "Documentation Issue" as display names.
+
+### Edge Cases Not Covered
+
+1. **`question` label may not communicate well to contributors**
+   - **Current Plan:** installation_help.yml auto-labels `question`
+   - **Detail:** The `question` label is a GitHub default but "question" is
+     vague for a support request about installation. The existing label set
+     doesn't have a `help` or `support` label.
+   - **Recommendation:** Using `question` is fine for now — changing the label
+     taxonomy is out of scope. Document in the template description that the
+     label is automatically applied.
+
+2. **GitHub Advisories may not be enabled on the org**
+   - **Current Plan:** `config.yml` links to `github.com/edera-dev/on/security/advisories/new`
+   - **Detail:** Private security advisories require the feature to be enabled
+     in repo settings. If disabled, the link 404s.
+   - **Recommendation:** Verify that GitHub Security Advisories are enabled for
+     `edera-dev/on` before merging. This is a one-click check in Settings →
+     Security.
+
+### Alternative Approaches Considered
+
+1. **Markdown templates instead of YAML forms**
+   - **Pros:** Simpler to author, widely understood
+   - **Cons:** Freeform — contributors can delete or ignore all prompts; no
+     structured field parsing; no auto-labelling
+   - **Verdict:** YAML forms are the right choice here ✅
+
+### Risks and Concerns
+
+1. **YAML schema errors render silently**
+   - **Likelihood:** Low
+   - **Impact:** Medium — broken template shows as blank form, not error page
+   - **Mitigation:** The plan correctly notes GitHub validates on push and
+     errors appear in the Actions tab. The `yamllint` suggestion in the plan
+     is a good safeguard. Implementer should validate locally before pushing.
+
+### Required Changes
+
+- [ ] Add `README.md` to Files Modified; update `issues/new` link on line 32
+  to `issues/new/choose` and broaden label text to "Report an issue"
+
+### Optional Improvements
+
+- [ ] Specify display `name` values explicitly in plan steps (e.g. "Bug Report"
+  not "bug_report") to avoid ambiguity during implementation
+- [ ] Add a test case: verify the README link resolves to the template picker
+
+### Verification Checklist
+
+- [x] Solution addresses root cause identified in GitHub issue
+- [x] All acceptance criteria from issue are covered
+- [x] Implementation steps are specific and actionable
+- [x] File paths are accurate
+- [x] Security implications considered and addressed (private advisory redirect)
+- [x] No performance implications (static files only)
+- [x] Test strategy covers critical paths (template picker, field optionality,
+  security redirect, SECURITY.md rendering)
+- [ ] README.md update not yet in Files Modified
+- [x] Related issues cross-referenced
+- [x] No breaking changes (additive only)
