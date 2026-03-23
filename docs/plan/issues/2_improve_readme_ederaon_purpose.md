@@ -1,7 +1,7 @@
 # GitHub Issue #2: docs: improve README to explain EderaON and repository purpose
 
 **Issue:** [#2](https://github.com/edera-dev/on/issues/2)
-**Status:** Planning
+**Status:** Reviewed (Approved)
 **Date:** 2026-03-23
 
 ## Problem Statement
@@ -213,3 +213,81 @@ Verify all URLs in the README are reachable:
    on the website is the canonical source ❌
 3. **Short orientation README linking to website** — Chosen: concise, maintainable,
    answers the two key questions visitors have ✅
+
+## Plan Review
+
+**Reviewer:** Claude Code (workflow-research-plan)
+**Review Date:** 2026-03-23
+**Original Plan Date:** 2026-03-23
+
+### Review Summary
+
+- **Overall Assessment:** Approved
+- **Confidence Level:** High
+- **Recommendation:** Proceed to implementation
+
+### Strengths
+
+- Plan is tightly scoped to exactly what the issue asks for — no scope creep
+- Content sourced from `what-is-ederaon.md` is accurate; every sentence in the
+  proposed README maps directly to verified source content
+- Trade-offs are well-reasoned and explicitly documented (no platform table,
+  no install instructions, short over long)
+- Codename risk is proactively addressed; grep of both repos confirms zero
+  occurrences of "Project Trellis" or "Trellis"
+- "EderaON" (camelCase, no space) used consistently in proposed content —
+  confirmed consistent with on-site source (7 occurrences, all "EderaON")
+- The "About this repository" section is a genuinely useful addition that the
+  source content doesn't have; appropriate original content for a GitHub README
+
+### Gaps Identified
+
+None blocking. One optional wording note below.
+
+### Edge Cases Not Covered
+
+None applicable — this is a pure documentation change with no logic paths.
+
+### Alternative Approaches Considered
+
+Plan's alternatives section is thorough. Independent review agrees with all
+three decisions:
+
+1. **Full what-is-ederaon.md copy** — Hugo shortcodes (`{{< callout >}}`,
+   `{{< tabs >}}`) would render as raw text on GitHub. Correct to omit. ❌
+2. **Install instructions in README** — Getting-started page will evolve
+   (image digest, new distros); duplicating it here would immediately drift. ❌
+3. **Short orientation README** — Correct choice. ✅
+
+### Risks and Concerns
+
+1. **Risk: URLs become stale**
+   - Likelihood: Low
+   - Impact: Low (broken links in README are visible and quickly reported)
+   - Mitigation: All URLs point to stable top-level domains (on.edera.dev,
+     docs.edera.dev, edera.dev, xenproject.org, github.com) — not versioned
+     paths or deep links that could move.
+
+### Required Changes
+
+None. Plan is ready to implement as written.
+
+### Optional Improvements
+
+- [ ] Minor wording consistency: the source `what-is-ederaon.md` prose (line 16)
+  says "single-node license" while the plan prose uses "one-node license". Both
+  forms appear in the source (the bullet uses "One-node license"), so either is
+  correct. Consider aligning with the bullet form ("one-node") which the plan
+  already uses — no change required, just noting for awareness.
+
+### Verification Checklist
+
+- [x] Solution addresses root cause identified in GitHub issue
+- [x] All acceptance criteria from issue are covered
+- [x] Implementation steps are specific and actionable
+- [x] File paths and code references are accurate
+- [x] Security implications considered (no secrets, no user input, static markdown)
+- [x] Performance impact assessed (N/A — static file)
+- [x] Test strategy covers critical paths (content completeness, no codenames, links)
+- [x] No breaking changes (additive replacement of minimal content)
+- [x] Internal codename scan performed — clean
