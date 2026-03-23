@@ -1,0 +1,29 @@
+name: Documentation Issue
+description: >
+  Report missing, incorrect, or unclear documentation at docs.edera.dev or
+  on.edera.dev.
+labels: ["documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        All fields below are optional — fill in what you have.
+
+  - type: input
+    id: url
+    attributes:
+      label: URL of affected page
+      placeholder: "https://docs.edera.dev/..."
+    required: false
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is incorrect or missing
+    required: false
+
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested improvement
+    required: false

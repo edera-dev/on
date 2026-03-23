@@ -1,0 +1,54 @@
+name: Bug Report
+description: >
+  Report a bug or unexpected behaviour in EderaON. Before opening, check
+  docs.edera.dev and on.edera.dev/getting-started to see if your issue is covered.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Before opening a bug report**, please check:
+        - [on.edera.dev/getting-started](https://on.edera.dev/getting-started) — installation and setup guide
+        - [docs.edera.dev](https://docs.edera.dev) — full technical documentation
+
+        All fields below are optional — fill in what you have.
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: EderaON version, host OS and kernel version, Kubernetes distribution and version.
+      placeholder: |
+        EderaON version:
+        Host OS and kernel:
+        Kubernetes distribution and version:
+    required: false
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1.
+        2.
+        3.
+    required: false
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+    required: false
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behaviour
+    required: false
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs or error output
+      render: shell
+    required: false
