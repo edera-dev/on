@@ -174,7 +174,7 @@ set -euo pipefail
 # Wait for cloud-init to finish so apt locks are released
 cloud-init status --wait
 
-sudo apt-get update && sudo apt-get install -y docker.io nftables
+sudo apt-get update && sudo apt-get install -y docker.io nftables pv
 sudo systemctl start docker
 sudo usermod -aG docker ubuntu
 REMOTE
