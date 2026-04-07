@@ -59,9 +59,11 @@ fi
 echo ""
 
 # Test 4: Zone lifecycle (launch + destroy)
+ZONE_TIMEOUT=120
 echo "[4] Testing zone lifecycle (launch and destroy)..."
+echo "    Timeout: ${ZONE_TIMEOUT}s"
 LAUNCH_START=$(date +%s)
-if sudo protect zone launch -n test-zone --wait; then
+if timeout "${ZONE_TIMEOUT}" sudo protect zone launch -n test-zone --wait; then
   LAUNCH_END=$(date +%s)
   echo "    Zone launch: $((LAUNCH_END - LAUNCH_START))s"
   pass "Zone launched successfully"
@@ -74,7 +76,13 @@ if sudo protect zone launch -n test-zone --wait; then
     fail "Zone destroy failed"
   fi
 else
-  fail "Zone launch failed"
+  LAUNCH_END=$(date +%s)
+  ELAPSED=$((LAUNCH_END - LAUNCH_START))
+  if [[ "$ELAPSED" -ge "$ZONE_TIMEOUT" ]]; then
+    fail "Zone launch timed out after ${ZONE_TIMEOUT}s (zone may be stuck or in failed state)"
+  else
+    fail "Zone launch failed after ${ELAPSED}s"
+  fi
 fi
 echo ""
 
