@@ -7,7 +7,7 @@ EderaON runs each container inside its own lightweight virtual machine, giving y
 ## Getting started
 
 Visit [on.edera.dev](https://on.edera.dev) to create an account and get your license.
-Full installation instructions are at [on.edera.dev/getting-started](https://on.edera.dev/getting-started).
+Full installation instructions are at [on.edera.dev/what-is-ederaon](https://on.edera.dev/what-is-ederaon/).
 
 ## About this repository
 
