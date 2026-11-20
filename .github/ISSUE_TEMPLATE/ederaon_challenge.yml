@@ -163,5 +163,5 @@ body:
           required: true
         - label: List my GitHub username on COMPLETED.md if my submission is accepted.
           required: false
-        - label: Enter me in the monthly t-shirt drawing (two "F**K Luck, Trust Edera!" t-shirts each month). If I win, Edera will email a form for my size and shipping address to my EderaON account email. Requires the license ID above.
+        - label: Enter me in the monthly t-shirt drawing (two "F**K Luck, Trust Edera!" t-shirts each month, to two different winners). If I win, Edera will email a form for my size and shipping address to my EderaON account email. Requires the license ID above.
           required: false
