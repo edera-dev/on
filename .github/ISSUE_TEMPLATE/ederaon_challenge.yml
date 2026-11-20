@@ -1,0 +1,165 @@
+name: EderaON Challenge results
+description: >
+  Submit the results of the EderaON Challenge: at least three workloads you ran
+  in Edera zones, including one of your own, and what worked or broke.
+title: "Challenge results: "
+labels: ["challenge"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the [EderaON Challenge](https://on.edera.dev/challenge/)!
+
+        Run **at least three** workloads, including **one of your own**. Failures are as useful to us as successes: each failed or partly working workload becomes its own bug issue.
+
+        **This issue is public.** Remove your license key, passwords, internal hostnames and anything else private from the output before you submit.
+
+  - type: dropdown
+    id: backend
+    attributes:
+      label: Backend
+      description: If `uname -r` contains `-edera`, the host runs Xen. Otherwise it runs KVM.
+      options:
+        - Xen
+        - KVM
+        - Not sure
+    validations:
+      required: true
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options:
+        - AWS EC2
+        - Google Cloud
+        - Azure
+        - Bare metal
+        - Other (tell us below)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: method
+    attributes:
+      label: How did you run the workloads?
+      multiple: true
+      options:
+        - protect CLI
+        - Kubernetes
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Output of `sudo protect --version`, `uname -r`, and `sudo protect zone list`. For Kubernetes, add `kubectl version`.
+      render: shell
+    validations:
+      required: true
+
+  - type: input
+    id: workload1
+    attributes:
+      label: Workload 1
+      description: The image, and what you did with it.
+      placeholder: "docker.io/library/nginx:latest, served a page and requested it from the host"
+    validations:
+      required: true
+  - type: dropdown
+    id: result1
+    attributes:
+      label: Workload 1 result
+      options:
+        - Worked
+        - Partly worked
+        - Failed
+    validations:
+      required: true
+  - type: textarea
+    id: output1
+    attributes:
+      label: Workload 1 output
+      description: Commands and output. For a failure, add `sudo journalctl -u protect-daemon -n 50` or `kubectl describe pod`.
+      render: shell
+    validations:
+      required: true
+
+  - type: input
+    id: workload2
+    attributes:
+      label: Workload 2
+      description: The image, and what you did with it.
+    validations:
+      required: true
+  - type: dropdown
+    id: result2
+    attributes:
+      label: Workload 2 result
+      options:
+        - Worked
+        - Partly worked
+        - Failed
+    validations:
+      required: true
+  - type: textarea
+    id: output2
+    attributes:
+      label: Workload 2 output
+      render: shell
+    validations:
+      required: true
+
+  - type: input
+    id: workload3
+    attributes:
+      label: Workload 3 (your own)
+      description: An image you actually use, and what you did with it.
+    validations:
+      required: true
+  - type: dropdown
+    id: result3
+    attributes:
+      label: Workload 3 result
+      options:
+        - Worked
+        - Partly worked
+        - Failed
+    validations:
+      required: true
+  - type: textarea
+    id: output3
+    attributes:
+      label: Workload 3 output
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: more
+    attributes:
+      label: More workloads (optional)
+      description: Any further workloads, each with the image, what you did, the result and the output.
+
+  - type: textarea
+    id: surprises
+    attributes:
+      label: Anything surprising? (optional)
+      description: Something that was harder than expected, unclear docs, or anything you'd like us to know.
+
+  - type: input
+    id: license_id
+    attributes:
+      label: License ID (optional)
+      description: The license **ID** shown on [My License](https://on.edera.dev/). Never the license key.
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Before you submit
+      options:
+        - label: I removed my license key and anything private from the output above.
+          required: true
+        - label: List my GitHub username on COMPLETED.md if my submission is accepted.
+          required: false
